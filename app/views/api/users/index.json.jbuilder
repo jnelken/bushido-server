@@ -1,8 +1,3 @@
 json.array! @users do |user|
-  json.extract! user,
-  :id,
-  :username,
-  :created_at,
-  :updated_at,
-  # add ELO/score
+  json.partial! 'api/users/user', user: user
 end
