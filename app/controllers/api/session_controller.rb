@@ -1,13 +1,22 @@
 class Api::SessionController < ApplicationController
 
-  def index
-    if !current_user
-      render json: {}
-      return
+  def create
+    @user = User.find_by_credentials(
+      params[:user][:username],
+      params[:user][:password]
+    )
+    
+    if @user
+      sign_in(@user)
+      render "api/users/show"
+    else
+      render json: {errors: ["Invalid username or password"]}, status: 401
     end
-    @user = current_user
-    render "api/users/index"
   end
 
-  
+  def destroy
+    sign_out
+    render json: {}
+  end
+
 end
