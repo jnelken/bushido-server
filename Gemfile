@@ -46,4 +46,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # SQLite3 for dev, test
+  gem 'sqlite3'
 end
